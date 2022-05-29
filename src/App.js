@@ -8,9 +8,12 @@ const App = () => {
   const [newImage, setNewImage] = useState()
   const [newSunLight, setNewSunLight] = useState()
   const [newWater, setNewWater] = useState()
+  const [newNote, setNewNote] = useState()
   const [plants, setPlants] = useState([])
   const [seeEditForm, setSeeEditForm] = useState(false)
+  const [seeNoteForm, setSeeNoteForm] = useState(false)
   const [editPlant, setEditPlant] = useState({})
+  const [notePlant, setNotePlant] = useState({})
 
   const handleNewNameChange = (event) => {
     setNewName(event.target.value)
@@ -31,6 +34,9 @@ const App = () => {
   const handleNewWaterChange = (event) => {
     setNewWater(event.target.value)
   }
+  const handleNewNoteChange = (event) => {
+    setNewNote(event.target.value)
+  }
 
   const handleShowEditForm = (event) => {
     if (seeEditForm === false) {
@@ -43,6 +49,16 @@ const App = () => {
       setNewSunLight()
       setNewWater()
       setEditPlant({})
+    }
+  }
+
+  const handleShowNoteForm = (event) => {
+    if (seeNoteForm === false) {
+      setSeeNoteForm(true)
+    } else {
+      setSeeNoteForm(false)
+      setNewNote()
+      setNotePlant({})
     }
   }
 
@@ -126,10 +142,38 @@ const App = () => {
     setNewWater()
   }
 
+  const handleNoteForm = (event, noteData) => {
+    event.preventDefault();
+    axios
+      .put(
+        // `http://localhost:3000/plants/${plantData._id}`,
+        `https://shrouded-wave-73322.herokuapp.com/notes/${plantData._id}`,
+        {
+          note: newNote,
+        }
+      )
+    .then(()=>{
+      axios
+        // .get('http://localhost:3000/plants')
+        .get('https://shrouded-wave-73322.herokuapp.com/notes')
+        .then((response)=>{
+          setNote(response.data)
+        })
+    })
+    setSeeNoteForm(false)
+    setNewNote()
+  }
+
 const assignEditPlant = (plant) => {
   setEditPlant(plant)
   handleShowEditForm()
 }
+
+const assignNotePlant = (plant) => {
+  setNotePlant(plant)
+  handleShowNoteForm()
+}
+
 
 
 
@@ -166,6 +210,11 @@ const assignEditPlant = (plant) => {
                 <p className="plant-scientificName">Scientific Name: {plant.scientificName}</p>
                 <p className="plant-sunlight">Sunlight: {plant.sunlight}</p>
                 <p className="plant-water">Water: {plant.water}</p>
+                {plants.note.map((note) => {
+                  return (
+                    <p> {plant.note}</p>
+                  )
+                })}
                 <div className="plantBtnsDiv">
                   <button
                     onClick={(event) => {
@@ -177,6 +226,11 @@ const assignEditPlant = (plant) => {
                     assignEditPlant(plant)
                   }} className="edit-Btn">
                     Edit
+                  </button>
+                  <button onClick={(event) => {
+                    assignedNotePlant(plant)
+                  }} className="note-btn">
+                    Note
                   </button>
                 </div>
                 {plant._id === editPlant._id ?
@@ -199,6 +253,23 @@ const assignEditPlant = (plant) => {
                   </div>
               : null
               : null }
+
+              {plant._id === notePlant._id ?
+                seeNoteForm ?
+                <div className="note-plant-form-div" key={plant._id}>
+                  <h3 className="edit-plant-text">Add Note {plant.name}</h3>
+                  <form onSubmit={(event) => handleNoteForm(event, plant)}>
+                      Note: <input type="text" onChange={handleNewNoteChange} className="note-text"/><br/>
+                      <div className="editBtnDiv">
+                        <input className="submit-btns" type="submit" value="Submit"/>
+                      </div>
+                  </form>
+                </div>
+            : null
+            : null }
+
+
+
               </div>
           )
       })
