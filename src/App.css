@@ -1,12 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@500&display=swap');
+
+
+* {
+  font-family: 'Karla', sans-serif;
+}
+
 body {
   width: 100%;
   background-image: url("https://images.pexels.com/photos/807598/pexels-photo-807598.jpeg?cs=srgb&dl=pexels-sohail-nachiti-807598.jpg&fm=jpg");
-
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-
-
 }
 
 .new-plant-form-div {
@@ -17,8 +21,6 @@ body {
   background: rgba(223, 242, 216, 0.7);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(12.4px);
-  -webkit-backdrop-filter: blur(15.4px);
   border: 1px solid rgba(57, 228, 6, 0.89);
   width: 300px;
   margin-left: auto;
@@ -26,6 +28,7 @@ body {
   text-align: right;
   border-radius: 15px;
   border: thin solid black;
+  font-size: 15px;
 }
 
 .new-plant-form-input-div input {
@@ -38,10 +41,15 @@ body {
 
 .new-plant-text {
   margin: 2px;
+  color: rgba(223, 242, 216);
+  text-align: center;
+  text-shadow: -1px 2px 0px black, 1px 2px 0px black, 1px -2px 0px black
 }
 
 .plants-text {
+  color: rgba(223, 242, 216);
   text-align: center;
+  text-shadow: -1px 2px 0px black, 1px 2px 0px black, 1px -2px 0px black
 }
 
 .plants-flexbox {
@@ -109,6 +117,7 @@ body {
 .scientificName-div {
   width: 134px;
   margin: 0px;
+  margin-top: 8px;
 }
 
 .test input {
@@ -120,15 +129,45 @@ body {
   flex-wrap: nowrap;
 }
 
+.submit-btn-new {
+  background-color: white;
+  color: black;
+  padding: 7px 10px;
+  border-radius: 15px;
+  margin: 4px;
+  border-color: lightgray;
+}
+
+button, .submit-btns {
+  background-color: white;
+  color: black;
+  padding: 7px 10px;
+  border-radius: 15px;
+  margin: 4px;
+  width: 70px;
+  border-color: lightgray;
+}
+
+button:hover, .submit-btns:hover, .submit-btn-new:hover {
+  background-color: #C6DEA6;
+}
+
 @media (max-width: 300px){
+  #new-scientific-name-div {
+    width: 100px;
+    margin: 0px;
+    align-items: baseline;
+  }
+
   .new-plant-form-input-div {
-    font-size: 12px;
+    font-size: 14px;
     width: 270px;
   }
 
   .scientificName-div {
     width: 80px;
     margin: 0px;
+    margin-top: 0px;
   }
 
   .test input {
@@ -138,5 +177,6 @@ body {
   .test {
     display: flex;
     flex-wrap: nowrap;
+    align-items: center;
   }
 }
