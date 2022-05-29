@@ -9,7 +9,8 @@ const App = () => {
   const [newSunLight, setNewSunLight] = useState()
   const [newWater, setNewWater] = useState()
   const [plants, setPlants] = useState([])
-  const [editForm, setEditForm] = useState(false)
+  const [seeEditForm, setSeeEditForm] = useState(false)
+  const [editPlant, setEditPlant] = useState({})
 
   const handleNewNameChange = (event) => {
     setNewName(event.target.value)
@@ -32,7 +33,17 @@ const App = () => {
   }
 
   const handleShowEditForm = (event) => {
-    setEditForm(true)
+    if (seeEditForm === false) {
+      setSeeEditForm(true)
+    } else {
+      setSeeEditForm(false)
+      setNewName()
+      setNewScientificName()
+      setNewImage()
+      setNewSunLight()
+      setNewWater()
+      setEditPlant({})
+    }
   }
 
   useEffect(()=>{
@@ -74,10 +85,14 @@ const App = () => {
           setPlants(response.data)
         })
     })
+    setNewName()
+    setNewScientificName()
+    setNewImage()
+    setNewSunLight()
+    setNewWater()
   }
 
   const handleEditForm = (event, plantData) => {
-    setEditForm(false)
     event.preventDefault();
     axios
       .put(
@@ -97,9 +112,18 @@ const App = () => {
           setPlants(response.data)
         })
     })
+    setSeeEditForm(false)
+    setNewName()
+    setNewScientificName()
+    setNewImage()
+    setNewSunLight()
+    setNewWater()
   }
 
-
+const assignEditPlant = (plant) => {
+  setEditPlant(plant)
+  handleShowEditForm()
+}
 
 
 
@@ -141,24 +165,31 @@ const App = () => {
                     Delete
                   </button>
                   <button onClick={(event) => {
-                    handleShowEditForm(plant)
+                    assignEditPlant(plant)
                   }} className="edit-Btn">
                     Edit
                   </button>
                 </div>
-                {(editForm) ?
-                    <div className="edit-plant-form-div" key={plant._id}>
-                      <h3 className="edit-plant-text">Edit {plant.name}</h3>
-                      <form onSubmit={(event) => handleEditForm(event, plant)}>
-                          Name: <input type="text" placeholder={plant.name} onChange={handleNewNameChange} className="edit-text" required/><br/>
-                          Scientifc Name: <input type="text" placeholder={plant.scientificName} onChange={handleNewScientificNameChange} className="edit-text" required/><br/>
-                          Image: <input type="text" placeholder={plant.image} onChange={handleNewImageChange} className="edit-text" required/><br/>
-                          Sunlight: <input type="text" placeholder={plant.sunlight} onChange={handleNewSunLightChange}className="edit-text" required/><br/>
-                          Water: <input type="text" placeholder={plant.water} onChange={handleNewWaterChange}className="edit-text" required/><br/>
+                {plant._id === editPlant._id ?
+                  seeEditForm ?
+                  <div className="edit-plant-form-div" key={plant._id}>
+                    <h3 className="edit-plant-text">Edit {plant.name}</h3>
+                    <form onSubmit={(event) => handleEditForm(event, plant)}>
+                        Name: <input type="text" defaultValue={plant.name} onChange={handleNewNameChange} className="edit-text"/><br/>
+                        <div className='test'>
+                        <div className="scientificName-div">
+                        Scientifc Name: </div><input type="text" defaultValue={plant.scientificName} onChange={handleNewScientificNameChange} className="edit-text"/><br/>
+                        </div>
+                        Image: <input type="text" defaultValue={plant.image} onChange={handleNewImageChange} className="edit-text"/><br/>
+                        Sunlight: <input type="text" defaultValue={plant.sunlight} onChange={handleNewSunLightChange}className="edit-text"/><br/>
+                        Water: <input type="text" defaultValue={plant.water} onChange={handleNewWaterChange}className="edit-text"/><br/>
+                        <div className="editBtnDiv">
                           <input type="submit" value="Submit"/>
-                      </form>
-                    </div>
-                : null}
+                        </div>
+                    </form>
+                  </div>
+              : null
+              : null }
               </div>
           )
       })
@@ -219,11 +250,11 @@ export default App;
         //     <div className="edit-plant-form-div" key={plant._id}>
         //       <h3 className="edit-plant-text">Edit {plant.name}</h3>
         //       <form onSubmit={(event) => handleEditForm(event, plant)}>
-        //           Name: <input type="text" placeholder={plant.name} onChange={handleNewNameChange} className="edit-text" required/><br/>
-        //           Scientifc Name: <input type="text" placeholder={plant.release} onChange={handleNewScientificNameChange} className="edit-text" required/><br/>
-        //           Image: <input type="text" placeholder={plant.image} onChange={handleNewImageChange} className="edit-text" required/><br/>
-        //           Sunlight: <input type="text" placeholder={plant.sunlight} onChange={handleNewSunLightChange}className="edit-text" required/><br/>
-        //           Water: <input type="text" placeholder={plant.water} onChange={handleNewWaterChange}className="edit-text" required/><br/>
+        //           Name: <input type="text" defaultValue={plant.name} onChange={handleNewNameChange} className="edit-text" required/><br/>
+        //           Scientifc Name: <input type="text" defaultValue={plant.release} onChange={handleNewScientificNameChange} className="edit-text" required/><br/>
+        //           Image: <input type="text" defaultValue={plant.image} onChange={handleNewImageChange} className="edit-text" required/><br/>
+        //           Sunlight: <input type="text" defaultValue={plant.sunlight} onChange={handleNewSunLightChange}className="edit-text" required/><br/>
+        //           Water: <input type="text" defaultValue={plant.water} onChange={handleNewWaterChange}className="edit-text" required/><br/>
         //           <input type="submit" value="Submit"/>
         //       </form>
         //     </div>

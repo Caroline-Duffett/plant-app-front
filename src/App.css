@@ -1,1 +1,142 @@
+body {
+  width: 100%;
+  background-image: url("https://images.pexels.com/photos/807598/pexels-photo-807598.jpeg?cs=srgb&dl=pexels-sohail-nachiti-807598.jpg&fm=jpg");
 
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+
+}
+
+.new-plant-form-div {
+  text-align: center;
+}
+
+.new-plant-form-input-div {
+  background: rgba(223, 242, 216, 0.7);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(12.4px);
+  -webkit-backdrop-filter: blur(15.4px);
+  border: 1px solid rgba(57, 228, 6, 0.89);
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: right;
+  border-radius: 15px;
+  border: thin solid black;
+}
+
+.new-plant-form-input-div input {
+  margin: 7px 10px;
+}
+
+.create-plant-btn-div {
+  text-align: center;
+}
+
+.new-plant-text {
+  margin: 2px;
+}
+
+.plants-text {
+  text-align: center;
+}
+
+.plants-flexbox {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  flex-direction: row;
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+  gap: 20px 20px;
+}
+
+.plant-card {
+  background: rgba(223, 242, 216, 0.7);
+  border-radius: 16px;
+  /* box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); */
+  /*backdrop-filter: blur(12.4px);
+  -webkit-backdrop-filter: blur(15.4px);*/
+  border: 1px solid;
+  text-align: center;
+  padding: 7px;
+  margin: 4px;
+  border-radius: 15px;
+  border: thin solid black;
+  width: 300px;
+}
+
+.plant-image-div {
+  max-height: 66%;
+}
+
+.plant-name {
+  margin-top: 30px;
+}
+
+.plant-image-div img {
+  height: 100%;
+  max-width: 100%;
+  border-radius: 10px;
+}
+
+.edit-plant-text {
+  text-align: center;
+}
+
+.edit-text::placeholder {
+  opacity: 1;
+  color: black;
+}
+
+.edit-plant-form-div {
+  margin-top: 10px;
+  text-align: right;
+}
+
+.edit-plant-form-div input {
+  margin: 5px 10px;
+}
+
+.editBtnDiv {
+  text-align: center;
+}
+
+.scientificName-div {
+  width: 134px;
+  margin: 0px;
+}
+
+.test input {
+  height: 16px
+}
+
+.test {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+@media (max-width: 300px){
+  .new-plant-form-input-div {
+    font-size: 12px;
+    width: 270px;
+  }
+
+  .scientificName-div {
+    width: 80px;
+    margin: 0px;
+  }
+
+  .test input {
+    height: 16px;
+  }
+
+  .test {
+    display: flex;
+    flex-wrap: nowrap;
+  }
+}
