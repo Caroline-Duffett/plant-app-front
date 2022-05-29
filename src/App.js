@@ -10,6 +10,7 @@ const App = () => {
   const [newWater, setNewWater] = useState()
   const [newNote, setNewNote] = useState()
   const [plants, setPlants] = useState([])
+  const [notes, setNotes] = useState([])
   const [seeEditForm, setSeeEditForm] = useState(false)
   const [seeNoteForm, setSeeNoteForm] = useState(false)
   const [editPlant, setEditPlant] = useState({})
@@ -147,7 +148,7 @@ const App = () => {
     axios
       .put(
         // `http://localhost:3000/plants/${plantData._id}`,
-        `https://shrouded-wave-73322.herokuapp.com/notes/${plantData._id}`,
+        `https://shrouded-wave-73322.herokuapp.com/notes/${noteData._id}`,
         {
           note: newNote,
         }
@@ -157,7 +158,7 @@ const App = () => {
         // .get('http://localhost:3000/plants')
         .get('https://shrouded-wave-73322.herokuapp.com/notes')
         .then((response)=>{
-          setNote(response.data)
+          setNotes(response.data)
         })
     })
     setSeeNoteForm(false)
@@ -228,7 +229,7 @@ const assignNotePlant = (plant) => {
                     Edit
                   </button>
                   <button onClick={(event) => {
-                    assignedNotePlant(plant)
+                    assignNotePlant(plant)
                   }} className="note-btn">
                     Note
                   </button>
