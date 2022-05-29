@@ -134,12 +134,15 @@ const assignEditPlant = (plant) => {
         <div className="new-plant-form-input-div">
           <form onSubmit={handleNewPlantFormSubmit}>
               Name: <input type="text" onChange={handleNewNameChange} required/><br/>
-              Scientific Name: <input type="text" onChange={handleNewScientificNameChange} required/><br/>
+              <div className='test'>
+              <div className="scientificName-div" id="new-scientific-name-div">
+              Scientifc Name: </div><input type="text" onChange={handleNewScientificNameChange} className="edit-text" required/><br/>
+              </div>
               Image: <input type="text" onChange={handleNewImageChange} required/><br/>
               Sun Levels: <input type="text" onChange={handleNewSunLightChange} required/><br/>
               Water: <input type="text" onChange={handleNewWaterChange} required/><br/>
               <div className="create-plant-btn-div">
-                <input type="submit" value="Create plant"/>
+                <input className="submit-btn-new" type="submit" value="Create plant"/>
               </div>
           </form>
         </div>
@@ -184,7 +187,7 @@ const assignEditPlant = (plant) => {
                         Sunlight: <input type="text" defaultValue={plant.sunlight} onChange={handleNewSunLightChange}className="edit-text"/><br/>
                         Water: <input type="text" defaultValue={plant.water} onChange={handleNewWaterChange}className="edit-text"/><br/>
                         <div className="editBtnDiv">
-                          <input type="submit" value="Submit"/>
+                          <input className="submit-btns" type="submit" value="Submit"/>
                         </div>
                     </form>
                   </div>
@@ -265,3 +268,5 @@ export default App;
 //   })
 // }
 // </div>
+
+//Scientific Name: <input type="text" onChange={handleNewScientificNameChange} required/><br/>
