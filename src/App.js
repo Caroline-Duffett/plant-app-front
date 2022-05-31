@@ -86,9 +86,9 @@ const App = () => {
       })
   }
 
-  const handleNoteDelete = (plantData)=>{
+  const handleNoteDelete = (plantData, notesData)=>{
     axios
-    .delete(`http://localhost:3000/notes/${plantData}`)
+    .delete(`http://localhost:3000/notes/${plantData._id}/${notesData}`)
     //.delete(`https://shrouded-wave-73322.herokuapp.com/plants/${plantData._id}`)
       .then(()=>{
         axios
@@ -97,7 +97,8 @@ const App = () => {
             setPlants(response.data)
           })
       })
-    console.log(plantData);
+    console.log(plantData._id);
+    console.log(notesData);
   }
 
 
@@ -179,6 +180,7 @@ const App = () => {
     })
     // setSeeNoteForm(false)
     setNewNote()
+    console.log(noteData._id);
   }
 
 const assignEditPlant = (plant) => {
@@ -280,7 +282,7 @@ const assignNotePlant = (plant) => {
                           <td className="note-box">{note.note}</td>
                           <td className="x-box">
                             <i onClick={(event) => {
-                              handleNoteDelete(plant)
+                              handleNoteDelete(plant, note._id)
                             }}>❌</i>
                           </td>
                         </tr>
