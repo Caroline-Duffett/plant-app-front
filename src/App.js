@@ -42,6 +42,7 @@ const App = () => {
   const handleShowEditForm = (event) => {
     if (seeEditForm === false) {
       setSeeEditForm(true)
+      setSeeNoteForm(false)
     } else {
       setSeeEditForm(false)
       setNewName()
@@ -56,6 +57,7 @@ const App = () => {
   const handleShowNoteForm = (event) => {
     if (seeNoteForm === false) {
       setSeeNoteForm(true)
+      setSeeEditForm(false)
     } else {
       setSeeNoteForm(false)
       setNewNote()
