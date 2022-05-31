@@ -65,8 +65,8 @@ const App = () => {
 
   useEffect(()=>{
     axios
-      .get('http://localhost:3000/plants')
-      //.get('https://shrouded-wave-73322.herokuapp.com/plants')
+      //.get('http://localhost:3000/plants')
+      .get('https://shrouded-wave-73322.herokuapp.com/plants')
       .then((response)=>{
         setPlants(response.data)
         setNotes(response.data.notes)
@@ -75,37 +75,40 @@ const App = () => {
 
   const handleDelete = (plantData)=>{
     axios
-    .delete(`http://localhost:3000/plants/${plantData._id}`)
-    //.delete(`https://shrouded-wave-73322.herokuapp.com/plants/${plantData._id}`)
+    //.delete(`http://localhost:3000/plants/${plantData._id}`)
+    .delete(`https://shrouded-wave-73322.herokuapp.com/plants/${plantData._id}`)
       .then(()=>{
         axios
-          .get('http://localhost:3000/plants')
+          //.get('http://localhost:3000/plants')
+          .get(`https://shrouded-wave-73322.herokuapp.com/plants/`)
           .then((response)=>{
             setPlants(response.data)
           })
       })
   }
 
-  const handleNoteDelete = (plantData)=>{
+  const handleNoteDelete = (plantData, notesData)=>{
     axios
-    .delete(`http://localhost:3000/notes/${plantData}`)
-    //.delete(`https://shrouded-wave-73322.herokuapp.com/plants/${plantData._id}`)
+    //.delete(`http://localhost:3000/notes/${plantData._id}/${notesData}`)
+    .delete(`https://shrouded-wave-73322.herokuapp.com/plants/${plantData._id}/${notesData}`)
       .then(()=>{
         axios
-          .get('http://localhost:3000/plants')
+          //.get('http://localhost:3000/plants')
+          .get(`https://shrouded-wave-73322.herokuapp.com/plants`)
           .then((response)=>{
             setPlants(response.data)
           })
       })
-    console.log(plantData);
+    console.log(plantData._id);
+    console.log(notesData);
   }
 
 
   const handleNewPlantFormSubmit = (event) => {
     event.preventDefault()
     axios.post(
-     'http://localhost:3000/plants',
-     // 'https://shrouded-wave-73322.herokuapp.com/plants',
+     //'http://localhost:3000/plants',
+    'https://shrouded-wave-73322.herokuapp.com/plants',
      { //must match model
        name: newName,
        scientificName: newScientificName,
@@ -115,8 +118,8 @@ const App = () => {
      }
     ).then(()=>{
       axios
-        .get('http://localhost:3000/plants')
-        // .get('https://shrouded-wave-73322.herokuapp.com/plants')
+        //.get('http://localhost:3000/plants')
+        .get('https://shrouded-wave-73322.herokuapp.com/plants')
         .then((response)=>{
           setPlants(response.data)
         })
@@ -132,8 +135,8 @@ const App = () => {
     event.preventDefault();
     axios
       .put(
-        `http://localhost:3000/plants/${plantData._id}`,
-        // `https://shrouded-wave-73322.herokuapp.com/plants/${plantData._id}`,
+        //`http://localhost:3000/plants/${plantData._id}`,
+        `https://shrouded-wave-73322.herokuapp.com/plants/${plantData._id}`,
         {
           name: newName,
           scientificName: newScientificName,
@@ -144,8 +147,8 @@ const App = () => {
       )
     .then(()=>{
       axios
-        .get('http://localhost:3000/plants')
-        // .get('https://shrouded-wave-73322.herokuapp.com/plants')
+        //.get('http://localhost:3000/plants')
+        .get('https://shrouded-wave-73322.herokuapp.com/plants')
         .then((response)=>{
           setPlants(response.data)
         })
@@ -162,16 +165,16 @@ const App = () => {
     event.preventDefault();
     axios
       .post(
-        `http://localhost:3000/notes/${noteData._id}`,
-        // `https://shrouded-wave-73322.herokuapp.com/notes/${noteData._id}`,
+        //`http://localhost:3000/notes/${noteData._id}`,
+        `https://shrouded-wave-73322.herokuapp.com/notes/${noteData._id}`,
         {
           note: newNote,
         }
       )
     .then(()=>{
       axios
-        .get('http://localhost:3000/plants')
-        // .get('https://shrouded-wave-73322.herokuapp.com/notes')
+        //.get('http://localhost:3000/plants')
+        .get('https://shrouded-wave-73322.herokuapp.com/plants')
         .then((response)=>{
           setNotes(response.data)
           setPlants(response.data)
@@ -179,6 +182,7 @@ const App = () => {
     })
     // setSeeNoteForm(false)
     setNewNote()
+    console.log(noteData._id);
   }
 
 const assignEditPlant = (plant) => {
@@ -263,7 +267,6 @@ const assignNotePlant = (plant) => {
                           <input className="submit-btns" type="submit" value="Submit"/>
                         </div>
                     </form>
-                    <i onCLick={handleNoteDelete}>❌</i>
                   </div>
               : null
               : null }
@@ -276,14 +279,16 @@ const assignNotePlant = (plant) => {
                   return (
                     <>
                       <table key={note._id} className="note-div">
-                      <tbody>
-                        <tr>
-                          <td className="note-box">{note.note}</td>
-                          <td className="x-box">
-                            <i>❌</i>
-                          </td>
-                        </tr>
-                      </tbody>
+                        <tbody>
+                          <tr>
+                            <td className="note-box">{note.note}</td>
+                            <td className="x-box">
+                              <i onClick={(event) => {
+                                handleNoteDelete(plant, note._id)
+                              }}>❌</i>
+                            </td>
+                          </tr>
+                        </tbody>
                       </table>
                     </>
                   )
