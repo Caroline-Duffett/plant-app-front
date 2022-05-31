@@ -65,8 +65,8 @@ const App = () => {
 
   useEffect(()=>{
     axios
-      .get('http://localhost:3000/plants')
-      //.get('https://shrouded-wave-73322.herokuapp.com/plants')
+      //.get('http://localhost:3000/plants')
+      .get('https://shrouded-wave-73322.herokuapp.com/plants')
       .then((response)=>{
         setPlants(response.data)
         setNotes(response.data.notes)
@@ -75,11 +75,12 @@ const App = () => {
 
   const handleDelete = (plantData)=>{
     axios
-    .delete(`http://localhost:3000/plants/${plantData._id}`)
-    //.delete(`https://shrouded-wave-73322.herokuapp.com/plants/${plantData._id}`)
+    //.delete(`http://localhost:3000/plants/${plantData._id}`)
+    .delete(`https://shrouded-wave-73322.herokuapp.com/plants/${plantData._id}`)
       .then(()=>{
         axios
-          .get('http://localhost:3000/plants')
+          //.get('http://localhost:3000/plants')
+          .get(`https://shrouded-wave-73322.herokuapp.com/plants/`)
           .then((response)=>{
             setPlants(response.data)
           })
@@ -88,11 +89,12 @@ const App = () => {
 
   const handleNoteDelete = (plantData, notesData)=>{
     axios
-    .delete(`http://localhost:3000/notes/${plantData._id}/${notesData}`)
-    //.delete(`https://shrouded-wave-73322.herokuapp.com/plants/${plantData._id}`)
+    //.delete(`http://localhost:3000/notes/${plantData._id}/${notesData}`)
+    .delete(`https://shrouded-wave-73322.herokuapp.com/plants/${plantData._id}/${notesData}`)
       .then(()=>{
         axios
-          .get('http://localhost:3000/plants')
+          //.get('http://localhost:3000/plants')
+          .get(`https://shrouded-wave-73322.herokuapp.com/plants`)
           .then((response)=>{
             setPlants(response.data)
           })
@@ -105,8 +107,8 @@ const App = () => {
   const handleNewPlantFormSubmit = (event) => {
     event.preventDefault()
     axios.post(
-     'http://localhost:3000/plants',
-     // 'https://shrouded-wave-73322.herokuapp.com/plants',
+     //'http://localhost:3000/plants',
+    'https://shrouded-wave-73322.herokuapp.com/plants',
      { //must match model
        name: newName,
        scientificName: newScientificName,
@@ -116,8 +118,8 @@ const App = () => {
      }
     ).then(()=>{
       axios
-        .get('http://localhost:3000/plants')
-        // .get('https://shrouded-wave-73322.herokuapp.com/plants')
+        //.get('http://localhost:3000/plants')
+        .get('https://shrouded-wave-73322.herokuapp.com/plants')
         .then((response)=>{
           setPlants(response.data)
         })
@@ -133,8 +135,8 @@ const App = () => {
     event.preventDefault();
     axios
       .put(
-        `http://localhost:3000/plants/${plantData._id}`,
-        // `https://shrouded-wave-73322.herokuapp.com/plants/${plantData._id}`,
+        //`http://localhost:3000/plants/${plantData._id}`,
+        `https://shrouded-wave-73322.herokuapp.com/plants/${plantData._id}`,
         {
           name: newName,
           scientificName: newScientificName,
@@ -145,8 +147,8 @@ const App = () => {
       )
     .then(()=>{
       axios
-        .get('http://localhost:3000/plants')
-        // .get('https://shrouded-wave-73322.herokuapp.com/plants')
+        //.get('http://localhost:3000/plants')
+        .get('https://shrouded-wave-73322.herokuapp.com/plants')
         .then((response)=>{
           setPlants(response.data)
         })
@@ -163,16 +165,16 @@ const App = () => {
     event.preventDefault();
     axios
       .post(
-        `http://localhost:3000/notes/${noteData._id}`,
-        // `https://shrouded-wave-73322.herokuapp.com/notes/${noteData._id}`,
+        //`http://localhost:3000/notes/${noteData._id}`,
+        `https://shrouded-wave-73322.herokuapp.com/notes/${noteData._id}`,
         {
           note: newNote,
         }
       )
     .then(()=>{
       axios
-        .get('http://localhost:3000/plants')
-        // .get('https://shrouded-wave-73322.herokuapp.com/notes')
+        //.get('http://localhost:3000/plants')
+        .get('https://shrouded-wave-73322.herokuapp.com/plants')
         .then((response)=>{
           setNotes(response.data)
           setPlants(response.data)
@@ -277,16 +279,16 @@ const assignNotePlant = (plant) => {
                   return (
                     <>
                       <table key={note._id} className="note-div">
-                      <tbody>
-                        <tr>
-                          <td className="note-box">{note.note}</td>
-                          <td className="x-box">
-                            <i onClick={(event) => {
-                              handleNoteDelete(plant, note._id)
-                            }}>❌</i>
-                          </td>
-                        </tr>
-                      </tbody>
+                        <tbody>
+                          <tr>
+                            <td className="note-box">{note.note}</td>
+                            <td className="x-box">
+                              <i onClick={(event) => {
+                                handleNoteDelete(plant, note._id)
+                              }}>❌</i>
+                            </td>
+                          </tr>
+                        </tbody>
                       </table>
                     </>
                   )
