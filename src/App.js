@@ -146,7 +146,7 @@ const App = () => {
     event.preventDefault();
     axios
       .put(
-        // `http://localhost:3000/plants/${plantData._id}`,
+        // `http://localhost:3000/notes/${plantData._id}`,
         `https://shrouded-wave-73322.herokuapp.com/notes/${plantData._id}`,
         {
           note: newNote,
