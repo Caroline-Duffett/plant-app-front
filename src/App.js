@@ -263,7 +263,6 @@ const assignNotePlant = (plant) => {
                           <input className="submit-btns" type="submit" value="Submit"/>
                         </div>
                     </form>
-                    <i onCLick={handleNoteDelete}>❌</i>
                   </div>
               : null
               : null }
@@ -280,7 +279,9 @@ const assignNotePlant = (plant) => {
                         <tr>
                           <td className="note-box">{note.note}</td>
                           <td className="x-box">
-                            <i>❌</i>
+                            <i onClick={(event) => {
+                              handleNoteDelete(plant)
+                            }}>❌</i>
                           </td>
                         </tr>
                       </tbody>
