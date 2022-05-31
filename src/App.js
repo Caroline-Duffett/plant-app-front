@@ -69,6 +69,7 @@ const App = () => {
       //.get('https://shrouded-wave-73322.herokuapp.com/plants')
       .then((response)=>{
         setPlants(response.data)
+        setNotes(response.data.notes)
       })
   },[])
 
@@ -84,6 +85,20 @@ const App = () => {
           })
       })
   }
+
+  // const handleNoteDelete = (plantData)=>{
+  //   axios
+  //   .delete(`http://localhost:3000/notes/${plantData}`)
+  //   //.delete(`https://shrouded-wave-73322.herokuapp.com/plants/${plantData._id}`)
+  //     .then(()=>{
+  //       axios
+  //         .get('http://localhost:3000/plants')
+  //         .then((response)=>{
+  //           setPlants(response.data)
+  //         })
+  //     })
+  //   console.log(plantData);
+  // }
 
 
   const handleNewPlantFormSubmit = (event) => {
@@ -144,11 +159,6 @@ const App = () => {
   }
 
   const handleNoteForm = (event, noteData) => {
-    // console.log(newNote);
-    // console.log(event);
-    // console.log(noteData);
-    // console.log(noteData._id);
-    // console.log(noteData.notes);
     event.preventDefault();
     axios
       .post(
@@ -164,9 +174,10 @@ const App = () => {
         // .get('https://shrouded-wave-73322.herokuapp.com/notes')
         .then((response)=>{
           setNotes(response.data)
+          setPlants(response.data)
         })
     })
-    setSeeNoteForm(false)
+    // setSeeNoteForm(false)
     setNewNote()
   }
 
@@ -213,21 +224,10 @@ const assignNotePlant = (plant) => {
                   <img src={plant.image} alt=""/>
                 </div>
                 <h4 className="plant-name">{plant.name}</h4>
-                <p className="plant-scientificName">Scientific Name: {plant.scientificName}</p>
+                <p className="plant-scientificName">{plant.scientificName}</p>
                 <p className="plant-sunlight">Sunlight: {plant.sunlight}</p>
                 <p className="plant-water">Water: {plant.water}</p>
-                <p>Notes:</p>
-                {
-                  notes.map((notes) => {
-                  console.log(notes[0].notes[1]);
-                  console.log('loop');
-                  return (
-                    <>
-                      <p key={notes._id} > {notes[0].notes}</p>
-                    </>
-                  )
-                })
-                }
+
                 <div className="plantBtnsDiv">
                   <button
                     onClick={(event) => {
@@ -243,7 +243,7 @@ const assignNotePlant = (plant) => {
                   <button onClick={(event) => {
                     assignNotePlant(plant)
                   }} className="note-btn">
-                    Note
+                    Notes
                   </button>
                 </div>
                 {plant._id === editPlant._id ?
@@ -266,11 +266,29 @@ const assignNotePlant = (plant) => {
                   </div>
               : null
               : null }
-
               {plant._id === notePlant._id ?
                 seeNoteForm ?
                 <div className="note-plant-form-div" key={plant._id}>
-                  <h3 className="edit-plant-text">Add Note {plant.name}</h3>
+                <p className="notes-label">Notes:</p>
+                {
+                  plant.notes.map((note) => {
+                  return (
+                    <>
+                      <table key={note._id} className="note-div">
+                      <tbody>
+                        <tr>
+                          <td className="note-box">{note.note}</td>
+                          <td className="x-box">
+                            <i>❌</i>
+                          </td>
+                        </tr>
+                      </tbody>
+                      </table>
+                    </>
+                  )
+                })
+                }
+                  <h3 className="edit-plant-text">Add Note to: {plant.name}</h3>
                   <form onSubmit={(event) => handleNoteForm(event, plant)}>
                       Note: <input type="text" onChange={handleNewNoteChange} className="note-text"/><br/>
                       <div className="editBtnDiv">
@@ -360,3 +378,7 @@ export default App;
 // </div>
 
 //Scientific Name: <input type="text" onChange={handleNewScientificNameChange} required/><br/>
+
+// onClick={(event) => {
+//   handleNoteDelete(note._id)
+// }}
