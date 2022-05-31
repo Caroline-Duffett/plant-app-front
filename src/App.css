@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Karla:wght@500&display=swap');
 
+@import url('https://kit.fontawesome.com/271fc7ae0f.js');
 
 * {
   font-family: 'Karla', sans-serif;
@@ -86,6 +87,10 @@ body {
   margin-top: 30px;
 }
 
+.plant-scientificName {
+  font-style: italic;
+}
+
 .plant-image-div img {
   height: 100%;
   max-width: 100%;
@@ -127,6 +132,35 @@ body {
 .test {
   display: flex;
   flex-wrap: nowrap;
+}
+
+.notes-label {
+  text-align: left;
+  margin-bottom: 0;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+table, th, td {
+  border-collapse: collapse;
+  border-bottom: solid;
+  border-color: gray;
+  border-width: 1px;
+}
+
+table {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+.note-box {
+  text-align: left;
+}
+
+.x-box {
+  text-align: right;
+  width: 0px;
 }
 
 .submit-btn-new {

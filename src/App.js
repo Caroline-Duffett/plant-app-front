@@ -65,32 +65,50 @@ const App = () => {
 
   useEffect(()=>{
     axios
-      .get('http://localhost:3000/plants')
-      //.get('https://shrouded-wave-73322.herokuapp.com/plants')
+      //.get('http://localhost:3000/plants')
+      .get('https://shrouded-wave-73322.herokuapp.com/plants')
       .then((response)=>{
         setPlants(response.data)
+        setNotes(response.data.notes)
       })
   },[])
 
   const handleDelete = (plantData)=>{
     axios
-    .delete(`http://localhost:3000/plants/${plantData._id}`)
-    //.delete(`https://shrouded-wave-73322.herokuapp.com/plants/${plantData._id}`)
+    //.delete(`http://localhost:3000/plants/${plantData._id}`)
+    .delete(`https://shrouded-wave-73322.herokuapp.com/plants/${plantData._id}`)
       .then(()=>{
         axios
-          .get('http://localhost:3000/plants')
+          //.get('http://localhost:3000/plants')
+          .get(`https://shrouded-wave-73322.herokuapp.com/plants/`)
           .then((response)=>{
             setPlants(response.data)
           })
       })
   }
 
+  const handleNoteDelete = (plantData, notesData)=>{
+    axios
+    //.delete(`http://localhost:3000/notes/${plantData._id}/${notesData}`)
+    .delete(`https://shrouded-wave-73322.herokuapp.com/plants/${plantData._id}/${notesData}`)
+      .then(()=>{
+        axios
+          //.get('http://localhost:3000/plants')
+          .get(`https://shrouded-wave-73322.herokuapp.com/plants`)
+          .then((response)=>{
+            setPlants(response.data)
+          })
+      })
+    console.log(plantData._id);
+    console.log(notesData);
+  }
+
 
   const handleNewPlantFormSubmit = (event) => {
     event.preventDefault()
     axios.post(
-     'http://localhost:3000/plants',
-     // 'https://shrouded-wave-73322.herokuapp.com/plants',
+     //'http://localhost:3000/plants',
+    'https://shrouded-wave-73322.herokuapp.com/plants',
      { //must match model
        name: newName,
        scientificName: newScientificName,
@@ -100,8 +118,8 @@ const App = () => {
      }
     ).then(()=>{
       axios
-        .get('http://localhost:3000/plants')
-        // .get('https://shrouded-wave-73322.herokuapp.com/plants')
+        //.get('http://localhost:3000/plants')
+        .get('https://shrouded-wave-73322.herokuapp.com/plants')
         .then((response)=>{
           setPlants(response.data)
         })
@@ -117,8 +135,8 @@ const App = () => {
     event.preventDefault();
     axios
       .put(
-        `http://localhost:3000/plants/${plantData._id}`,
-        // `https://shrouded-wave-73322.herokuapp.com/plants/${plantData._id}`,
+        //`http://localhost:3000/plants/${plantData._id}`,
+        `https://shrouded-wave-73322.herokuapp.com/plants/${plantData._id}`,
         {
           name: newName,
           scientificName: newScientificName,
@@ -129,8 +147,8 @@ const App = () => {
       )
     .then(()=>{
       axios
-        .get('http://localhost:3000/plants')
-        // .get('https://shrouded-wave-73322.herokuapp.com/plants')
+        //.get('http://localhost:3000/plants')
+        .get('https://shrouded-wave-73322.herokuapp.com/plants')
         .then((response)=>{
           setPlants(response.data)
         })
@@ -144,30 +162,27 @@ const App = () => {
   }
 
   const handleNoteForm = (event, noteData) => {
-    // console.log(newNote);
-    // console.log(event);
-    // console.log(noteData);
-    // console.log(noteData._id);
-    // console.log(noteData.notes);
     event.preventDefault();
     axios
       .post(
-        `http://localhost:3000/notes/${noteData._id}`,
-        // `https://shrouded-wave-73322.herokuapp.com/notes/${noteData._id}`,
+        //`http://localhost:3000/notes/${noteData._id}`,
+        `https://shrouded-wave-73322.herokuapp.com/notes/${noteData._id}`,
         {
           note: newNote,
         }
       )
     .then(()=>{
       axios
-        .get('http://localhost:3000/plants')
-        // .get('https://shrouded-wave-73322.herokuapp.com/notes')
+        //.get('http://localhost:3000/plants')
+        .get('https://shrouded-wave-73322.herokuapp.com/plants')
         .then((response)=>{
           setNotes(response.data)
+          setPlants(response.data)
         })
     })
-    setSeeNoteForm(false)
+    // setSeeNoteForm(false)
     setNewNote()
+    console.log(noteData._id);
   }
 
 const assignEditPlant = (plant) => {
@@ -213,21 +228,10 @@ const assignNotePlant = (plant) => {
                   <img src={plant.image} alt=""/>
                 </div>
                 <h4 className="plant-name">{plant.name}</h4>
-                <p className="plant-scientificName">Scientific Name: {plant.scientificName}</p>
+                <p className="plant-scientificName">{plant.scientificName}</p>
                 <p className="plant-sunlight">Sunlight: {plant.sunlight}</p>
                 <p className="plant-water">Water: {plant.water}</p>
-                <p>Notes:</p>
-                {
-                  notes.map((notes) => {
-                  console.log(notes[0].notes[1]);
-                  console.log('loop');
-                  return (
-                    <>
-                      <p key={notes._id} > {notes[0].notes}</p>
-                    </>
-                  )
-                })
-                }
+
                 <div className="plantBtnsDiv">
                   <button
                     onClick={(event) => {
@@ -243,7 +247,7 @@ const assignNotePlant = (plant) => {
                   <button onClick={(event) => {
                     assignNotePlant(plant)
                   }} className="note-btn">
-                    Note
+                    Notes
                   </button>
                 </div>
                 {plant._id === editPlant._id ?
@@ -266,11 +270,31 @@ const assignNotePlant = (plant) => {
                   </div>
               : null
               : null }
-
               {plant._id === notePlant._id ?
                 seeNoteForm ?
                 <div className="note-plant-form-div" key={plant._id}>
-                  <h3 className="edit-plant-text">Add Note {plant.name}</h3>
+                <p className="notes-label">Notes:</p>
+                {
+                  plant.notes.map((note) => {
+                  return (
+                    <>
+                      <table key={note._id} className="note-div">
+                        <tbody>
+                          <tr>
+                            <td className="note-box">{note.note}</td>
+                            <td className="x-box">
+                              <i onClick={(event) => {
+                                handleNoteDelete(plant, note._id)
+                              }}>❌</i>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </>
+                  )
+                })
+                }
+                  <h3 className="edit-plant-text">Add Note to: {plant.name}</h3>
                   <form onSubmit={(event) => handleNoteForm(event, plant)}>
                       Note: <input type="text" onChange={handleNewNoteChange} className="note-text"/><br/>
                       <div className="editBtnDiv">
@@ -360,3 +384,7 @@ export default App;
 // </div>
 
 //Scientific Name: <input type="text" onChange={handleNewScientificNameChange} required/><br/>
+
+// onClick={(event) => {
+//   handleNoteDelete(note._id)
+// }}
