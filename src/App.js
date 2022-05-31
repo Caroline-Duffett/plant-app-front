@@ -86,19 +86,19 @@ const App = () => {
       })
   }
 
-  // const handleNoteDelete = (plantData)=>{
-  //   axios
-  //   .delete(`http://localhost:3000/notes/${plantData}`)
-  //   //.delete(`https://shrouded-wave-73322.herokuapp.com/plants/${plantData._id}`)
-  //     .then(()=>{
-  //       axios
-  //         .get('http://localhost:3000/plants')
-  //         .then((response)=>{
-  //           setPlants(response.data)
-  //         })
-  //     })
-  //   console.log(plantData);
-  // }
+  const handleNoteDelete = (plantData)=>{
+    axios
+    .delete(`http://localhost:3000/notes/${plantData}`)
+    //.delete(`https://shrouded-wave-73322.herokuapp.com/plants/${plantData._id}`)
+      .then(()=>{
+        axios
+          .get('http://localhost:3000/plants')
+          .then((response)=>{
+            setPlants(response.data)
+          })
+      })
+    console.log(plantData);
+  }
 
 
   const handleNewPlantFormSubmit = (event) => {
@@ -263,6 +263,7 @@ const assignNotePlant = (plant) => {
                           <input className="submit-btns" type="submit" value="Submit"/>
                         </div>
                     </form>
+                    <i onCLick={handleNoteDelete}>❌</i>
                   </div>
               : null
               : null }
