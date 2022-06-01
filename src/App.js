@@ -12,7 +12,7 @@ import NotesForm from './components/NotesForm'
 const App = () => {
   const [newName, setNewName] = useState()
   const [newScientificName, setNewScientificName] = useState()
-  const [newImage, setNewImage] = useState()
+  const [newImage, setNewImage] = useState('')
   const [newSunLight, setNewSunLight] = useState()
   const [newWater, setNewWater] = useState()
   const [newNote, setNewNote] = useState()
@@ -54,7 +54,7 @@ const App = () => {
       setSeeEditForm(false)
       setNewName()
       setNewScientificName()
-      setNewImage()
+      setNewImage('')
       setNewSunLight()
       setNewWater()
       setEditPlant({})
@@ -134,7 +134,7 @@ const App = () => {
     })
     setNewName()
     setNewScientificName()
-    setNewImage()
+    setNewImage('')
     setNewSunLight()
     setNewWater()
   }
@@ -164,7 +164,7 @@ const App = () => {
     setSeeEditForm(false)
     setNewName()
     setNewScientificName()
-    setNewImage()
+    setNewImage('')
     setNewSunLight()
     setNewWater()
   }
