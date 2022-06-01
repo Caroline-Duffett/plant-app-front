@@ -92,7 +92,7 @@ body {
 }
 
 .plant-image-div img {
-  float: left;
+  float: none;
   width:  270px;
   height: 270px;
   object-fit: cover;
