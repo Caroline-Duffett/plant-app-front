@@ -1,6 +1,9 @@
-import './App.css';
-import {useState, useEffect} from 'react';
-import axios from 'axios';
+import './App.css'
+import {useState, useEffect} from 'react'
+import axios from 'axios'
+
+import NewPlants from './components/NewPlant'
+import CardText from './components/CardText'
 
 const App = () => {
   const [newName, setNewName] = useState()
@@ -200,56 +203,14 @@ const assignNotePlant = (plant) => {
 
   return (
     <>
-      <div className="new-plant-form-div">
-        <h3 className="new-plant-text">Create New Plant</h3>
-        <div className="new-plant-form-input-div">
-          <form onSubmit={handleNewPlantFormSubmit}>
-              Name: <input type="text" onChange={handleNewNameChange} required/><br/>
-              <div className='test'>
-              <div className="scientificName-div" id="new-scientific-name-div">
-              Scientifc Name: </div><input type="text" onChange={handleNewScientificNameChange} className="edit-text" required/><br/>
-              </div>
-              Image: <input type="text" onChange={handleNewImageChange} required/><br/>
-              Sun Levels: <input type="text" onChange={handleNewSunLightChange} required/><br/>
-              Water: <input type="text" onChange={handleNewWaterChange} required/><br/>
-              <div className="create-plant-btn-div">
-                <input className="submit-btn-new" type="submit" value="Create plant"/>
-              </div>
-          </form>
-        </div>
-      </div>
+      <NewPlants handleNewPlantFormSubmit={handleNewPlantFormSubmit} handleNewNameChange={handleNewNameChange} handleNewScientificNameChange={handleNewScientificNameChange} handleNewImageChange={handleNewImageChange} handleNewSunLightChange={handleNewSunLightChange} handleNewWaterChange={handleNewWaterChange}/>
       <h1 className="plants-text">Plants</h1>
       <div className="plants-flexbox">
       {
         plants.map((plant) => {
           return (
               <div key={plant._id} className="plant-card">
-                <div className="plant-image-div">
-                  <img src={plant.image} alt=""/>
-                </div>
-                <h4 className="plant-name">{plant.name}</h4>
-                <p className="plant-scientificName">{plant.scientificName}</p>
-                <p className="plant-sunlight">Sunlight: {plant.sunlight}</p>
-                <p className="plant-water">Water: {plant.water}</p>
-
-                <div className="plantBtnsDiv">
-                  <button
-                    onClick={(event) => {
-                      handleDelete(plant)
-                    }} className="delete-btn">
-                    Delete
-                  </button>
-                  <button onClick={(event) => {
-                    assignEditPlant(plant)
-                  }} className="edit-Btn">
-                    Edit
-                  </button>
-                  <button onClick={(event) => {
-                    assignNotePlant(plant)
-                  }} className="note-btn">
-                    Notes
-                  </button>
-                </div>
+                <CardText plant={plant} handleDelete={handleDelete} assignEditPlant={assignEditPlant} assignNotePlant={assignNotePlant}/>
                 {plant._id === editPlant._id ?
                   seeEditForm ?
                   <div className="edit-plant-form-div" key={plant._id}>
@@ -388,3 +349,49 @@ export default App;
 // onClick={(event) => {
 //   handleNoteDelete(note._id)
 // }}
+
+// <div className="new-plant-form-div">
+//   <h3 className="new-plant-text">Create New Plant</h3>
+//   <div className="new-plant-form-input-div">
+//     <form onSubmit={handleNewPlantFormSubmit}>
+//         Name: <input type="text" onChange={handleNewNameChange} required/><br/>
+//         <div className='test'>
+//         <div className="scientificName-div" id="new-scientific-name-div">
+//         Scientifc Name: </div><input type="text" onChange={handleNewScientificNameChange} className="edit-text" required/><br/>
+//         </div>
+//         Image: <input type="text" onChange={handleNewImageChange} required/><br/>
+//         Sun Levels: <input type="text" onChange={handleNewSunLightChange} required/><br/>
+//         Water: <input type="text" onChange={handleNewWaterChange} required/><br/>
+//         <div className="create-plant-btn-div">
+//           <input className="submit-btn-new" type="submit" value="Create plant"/>
+//         </div>
+//     </form>
+//   </div>
+// </div>
+
+// <div className="plant-image-div">
+//   <img src={plant.image} alt=""/>
+// </div>
+// <h4 className="plant-name">{plant.name}</h4>
+// <p className="plant-scientificName">{plant.scientificName}</p>
+// <p className="plant-sunlight">Sunlight: {plant.sunlight}</p>
+// <p className="plant-water">Water: {plant.water}</p>
+//
+// <div className="plantBtnsDiv">
+//   <button
+//     onClick={(event) => {
+//       handleDelete(plant)
+//     }} className="delete-btn">
+//     Delete
+//   </button>
+//   <button onClick={(event) => {
+//     assignEditPlant(plant)
+//   }} className="edit-Btn">
+//     Edit
+//   </button>
+//   <button onClick={(event) => {
+//     assignNotePlant(plant)
+//   }} className="note-btn">
+//     Notes
+//   </button>
+// </div>
