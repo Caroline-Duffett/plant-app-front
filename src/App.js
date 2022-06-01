@@ -1,11 +1,13 @@
+// dependencies
 import './App.css'
 import {useState, useEffect} from 'react'
 import axios from 'axios'
 
+// components
 import NewPlants from './components/NewPlant'
 import CardText from './components/CardText'
 import EditForm from './components/EditForm'
-
+import NotesForm from './components/NotesForm'
 
 const App = () => {
   const [newName, setNewName] = useState()
@@ -107,7 +109,6 @@ const App = () => {
     console.log(plantData._id);
     console.log(notesData);
   }
-
 
   const handleNewPlantFormSubmit = (event) => {
     event.preventDefault()
@@ -217,44 +218,13 @@ const assignNotePlant = (plant) => {
                 : null }
               {plant._id === notePlant._id ?
                 seeNoteForm ?
-                <div className="note-plant-form-div" key={plant._id}>
-                <p className="notes-label">Notes:</p>
-                {
-                  plant.notes.map((note) => {
-                  return (
-                    <>
-                      <table key={note._id} className="note-div">
-                        <tbody>
-                          <tr>
-                            <td className="note-box">{note.note}</td>
-                            <td className="x-box">
-                              <i onClick={(event) => {
-                                handleNoteDelete(plant, note._id)
-                              }}>❌</i>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </>
-                  )
-                })
-                }
-                  <h3 className="edit-plant-text">Add Note to: {plant.name}</h3>
-                  <form onSubmit={(event) => handleNoteForm(event, plant)}>
-                      Note: <input type="text" onChange={handleNewNoteChange} className="note-text"/><br/>
-                      <div className="editBtnDiv">
-                        <input className="submit-btns" type="submit" value="Submit"/>
-                      </div>
-                  </form>
-                </div>
-            : null
-            : null }
-
-
-
-              </div>
+                <NotesForm plant={plant} handleNoteDelete={handleNoteDelete} handleNoteForm={handleNoteForm} handleNewNoteChange={handleNewNoteChange}/>
+              : null
+              : null
+              }
+            </div>
           )
-      })
+        })
       }
       </div>
     </>
@@ -378,4 +348,35 @@ export default App;
 //   }} className="note-btn">
 //     Notes
 //   </button>
+// </div>
+
+// <div className="note-plant-form-div" key={plant._id}>
+// <p className="notes-label">Notes:</p>
+// {
+//   plant.notes.map((note) => {
+//   return (
+//     <>
+//       <table key={note._id} className="note-div">
+//         <tbody>
+//           <tr>
+//             <td className="note-box">{note.note}</td>
+//             <td className="x-box">
+//               <i onClick={(event) => {
+//                 handleNoteDelete(plant, note._id)
+//               }}>❌</i>
+//             </td>
+//           </tr>
+//         </tbody>
+//       </table>
+//     </>
+//   )
+// })
+// }
+//   <h3 className="edit-plant-text">Add Note to: {plant.name}</h3>
+//   <form onSubmit={(event) => handleNoteForm(event, plant)}>
+//       Note: <input type="text" onChange={handleNewNoteChange} className="note-text"/><br/>
+//       <div className="editBtnDiv">
+//         <input className="submit-btns" type="submit" value="Submit"/>
+//       </div>
+//   </form>
 // </div>
