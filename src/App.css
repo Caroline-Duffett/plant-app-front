@@ -213,4 +213,8 @@ button:hover, .submit-btns:hover, .submit-btn-new:hover {
     flex-wrap: nowrap;
     align-items: center;
   }
+
+  .plant-image-div img {
+    height: auto;
+  }
 }
