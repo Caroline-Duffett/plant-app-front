@@ -200,9 +200,6 @@ const assignNotePlant = (plant) => {
   handleShowNoteForm()
 }
 
-
-
-
   return (
     <>
       <NewPlants handleNewPlantFormSubmit={handleNewPlantFormSubmit} handleNewNameChange={handleNewNameChange} handleNewScientificNameChange={handleNewScientificNameChange} handleNewImageChange={handleNewImageChange} handleNewSunLightChange={handleNewSunLightChange} handleNewWaterChange={handleNewWaterChange}/>
@@ -215,24 +212,9 @@ const assignNotePlant = (plant) => {
                 <CardText plant={plant} handleDelete={handleDelete} assignEditPlant={assignEditPlant} assignNotePlant={assignNotePlant}/>
                 {plant._id === editPlant._id ?
                   seeEditForm ?
-                  <div className="edit-plant-form-div" key={plant._id}>
-                    <h3 className="edit-plant-text">Edit {plant.name}</h3>
-                    <form onSubmit={(event) => handleEditForm(event, plant)}>
-                        Name: <input type="text" defaultValue={plant.name} onChange={handleNewNameChange} className="edit-text"/><br/>
-                        <div className='test'>
-                        <div className="scientificName-div">
-                        Scientifc Name: </div><input type="text" defaultValue={plant.scientificName} onChange={handleNewScientificNameChange} className="edit-text"/><br/>
-                        </div>
-                        Image: <input type="text" defaultValue={plant.image} onChange={handleNewImageChange} className="edit-text"/><br/>
-                        Sunlight: <input type="text" defaultValue={plant.sunlight} onChange={handleNewSunLightChange}className="edit-text"/><br/>
-                        Water: <input type="text" defaultValue={plant.water} onChange={handleNewWaterChange}className="edit-text"/><br/>
-                        <div className="editBtnDiv">
-                          <input className="submit-btns" type="submit" value="Submit"/>
-                        </div>
-                    </form>
-                  </div>
-              : null
-              : null }
+                  <EditForm plant={plant} handleEditForm={handleEditForm} handleNewNameChange={handleNewNameChange} handleNewScientificNameChange={handleNewScientificNameChange} handleNewImageChange={handleNewImageChange} handleNewSunLightChange={handleNewSunLightChange} handleNewWaterChange={handleNewWaterChange}/>
+                : null
+                : null }
               {plant._id === notePlant._id ?
                 seeNoteForm ?
                 <div className="note-plant-form-div" key={plant._id}>
