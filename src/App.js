@@ -4,6 +4,8 @@ import axios from 'axios'
 
 import NewPlants from './components/NewPlant'
 import CardText from './components/CardText'
+import EditForm from './components/EditForm'
+
 
 const App = () => {
   const [newName, setNewName] = useState()
