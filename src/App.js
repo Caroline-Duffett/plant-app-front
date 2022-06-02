@@ -53,7 +53,7 @@ const App = () => {
       setSeeEditForm(false)
       setNewName()
       setNewScientificName()
-      setNewImage('')
+      setNewImage()
       setNewSunLight()
       setNewWater()
       setEditPlant({})
@@ -162,7 +162,7 @@ const App = () => {
     setSeeEditForm(false)
     setNewName()
     setNewScientificName()
-    setNewImage('')
+    setNewImage()
     setNewSunLight()
     setNewWater()
   }
