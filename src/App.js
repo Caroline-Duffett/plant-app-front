@@ -112,6 +112,7 @@ const App = () => {
 
   const handleNewPlantFormSubmit = (event) => {
     event.preventDefault()
+    event.currentTarget.reset()
     axios.post(
      //'http://localhost:3000/plants',
     'https://shrouded-wave-73322.herokuapp.com/plants',
