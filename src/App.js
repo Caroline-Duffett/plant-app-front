@@ -125,8 +125,8 @@ const App = () => {
 
   const handleNoteDelete = (plantData, notesData)=>{
     axios
-    .delete(`http://localhost:3000/notes/${plantData._id}/${notesData}`)
-    //.delete(`https://shrouded-wave-73322.herokuapp.com/notes/${plantData._id}/${notesData}`)
+    //.delete(`http://localhost:3000/notes/${plantData._id}/${notesData}`)
+    .delete(`https://shrouded-wave-73322.herokuapp.com/notes/${plantData._id}/${notesData}`)
       .then(()=>{
         axios
           .get('http://localhost:3000/plants')
