@@ -93,9 +93,9 @@ body {
 
 .plant-image-div img {
   float: none;
-    width:  270px;
-    height: 270px;
-    object-fit: cover;
+  width:  270px;
+  height: 270px;
+  object-fit: cover;
   border-radius: 10px;
 }
 
@@ -188,6 +188,25 @@ button:hover, .submit-btns:hover, .submit-btn-new:hover {
   background-color: #C6DEA6;
 }
 
+.toggle-show-btns {
+  width: 150px;
+}
+.toggle-btns-div {
+  text-align: center;
+  margin-top: -39px;
+}
+
+.login-div {
+  text-align: center;
+}
+.acct-btn-div {
+  margin-top: -100px;
+}
+.account-btn {
+  width: 150px;
+  font-size: 20px;
+}
+
 @media (max-width: 300px){
   #new-scientific-name-div {
     width: 100px;
@@ -218,5 +237,28 @@ button:hover, .submit-btns:hover, .submit-btn-new:hover {
 
   .plant-image-div img {
     height: auto;
+  }
+}
+
+@media (max-width: 500px){
+  .toggle-show-btns {
+    width: 135px;
+  }
+  .toggle-btns-div {
+    text-align: right;
+    margin-top: -39px;
+  }
+  .login-fields {
+    margin-top: 100px;
+  }
+}
+
+@media (max-width: 375px){
+  .toggle-show-btns {
+    width: 135px;
+  }
+  .toggle-btns-div {
+    text-align: center;
+    margin-top: 0;
   }
 }
