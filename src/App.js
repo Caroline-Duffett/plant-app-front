@@ -75,6 +75,7 @@ const App = () => {
   const handleShowEditForm = (event) => {
     if (seeEditForm === false) {
       setSeeEditForm(true)
+      setSeeNoteForm(false)
     } else {
       setSeeEditForm(false)
       setNewName()
@@ -89,6 +90,7 @@ const App = () => {
   const handleShowNoteForm = (event) => {
     if (seeNoteForm === false) {
       setSeeNoteForm(true)
+      setSeeEditForm(false)
     } else {
       setSeeNoteForm(false)
       setNewNote()
@@ -122,8 +124,8 @@ const App = () => {
 
   const handleNoteDelete = (plantData, notesData)=>{
     axios
-    .delete(`http://localhost:3000/notes/${plantData._id}/${notesData}`)
-    // .delete(`https://shrouded-wave-73322.herokuapp.com/plants/${plantData._id}/${notesData}`)
+    //.delete(`http://localhost:3000/notes/${plantData._id}/${notesData}`)
+    .delete(`https://shrouded-wave-73322.herokuapp.com/notes/${plantData._id}/${notesData}`)
       .then(()=>{
         axios
           .get('http://localhost:3000/plants')
