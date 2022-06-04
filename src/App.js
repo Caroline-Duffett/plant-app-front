@@ -23,6 +23,7 @@ const App = () => {
   const [seeNoteForm, setSeeNoteForm] = useState(false)
   const [editPlant, setEditPlant] = useState({})
   const [notePlant, setNotePlant] = useState([])
+  const [query, setQuery] = useState("")
   // auth states
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -362,13 +363,26 @@ const handleCreateUser = (event) => {
             <button onClick={displayPlantsButton} className="toggle-show-btns">Show Database</button>
           </div>
         <h1 className="plants-text">Hello, {currentUser.username}!</h1>
+        { showPlantDB ?
+          <div className="search-bar-div">
+          <input className="search-bar" placeholder="Search for Plant" onChange={event => setQuery(event.target.value)}/>
+        </div>: null}
         { showUserPlants ?
           <>
             <NewPlants handleNewPlantFormSubmit={handleNewPlantFormSubmit} handleNewNameChange={handleNewNameChange} handleNewScientificNameChange={handleNewScientificNameChange} handleNewImageChange={handleNewImageChange} handleNewSunLightChange={handleNewSunLightChange} handleNewWaterChange={handleNewWaterChange}/>
             <h1 className="plants-text">Plants</h1>
+            <div className="search-bar-div">
+              <input className="search-bar" placeholder="Search for Plant" onChange={event => setQuery(event.target.value)}/>
+            </div>
             <div className="plants-flexbox">
             {
-              plants.map((plant) => {
+              plants.filter(plant => {
+                if (query === '') {
+                  return plant
+                } else if (plant.name.toLowerCase().includes(query.toLowerCase())) {
+                  return plant
+                }
+              }).map((plant) => {
                 return (
                   <>
                   { plant.user === currentUser.username ?
@@ -395,7 +409,13 @@ const handleCreateUser = (event) => {
         </>
       : <div className="plants-flexbox">
       {
-        plants.map((plant) => {
+        plants.filter(plant => {
+          if (query === '') {
+            return plant
+          } else if (plant.name.toLowerCase().includes(query.toLowerCase())) {
+            return plant
+          }
+        }).map((plant) => {
           return (
 
             <div key={plant._id} className="plant-card">
