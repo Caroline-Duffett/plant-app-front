@@ -9,7 +9,7 @@ const NewPlant = (props) => {
             <div className="scientificName-div" id="new-scientific-name-div">
             Scientifc Name: </div><input type="text" onChange={props.handleNewScientificNameChange} className="edit-text" required/><br/>
             </div>
-            Image: <input type="text" onChange={props.handleNewImageChange} required/><br/>
+            Image: <input type="url" onChange={props.handleNewImageChange} placeholder="url"/><br/>
             Sun Levels: <input type="text" onChange={props.handleNewSunLightChange} required/><br/>
             Water: <input type="text" onChange={props.handleNewWaterChange} required/><br/>
             <div className="create-plant-btn-div">
