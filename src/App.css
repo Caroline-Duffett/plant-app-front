@@ -203,13 +203,24 @@ button:hover, .submit-btns:hover, .submit-btn-new:hover {
   margin-top: -100px;
 }
 .account-btn {
-  width: 150px;
+  width: 250px;
   font-size: 20px;
+}
+
+.search-bar-div {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.search-bar {
+  font-size: 20px;
+  text-align: center;
+  background-color: #C6DEA6;
 }
 
 @media (max-width: 300px){
   #new-scientific-name-div {
-    width: 100px;
+    width: 200px;
     margin: 0px;
     align-items: baseline;
   }
