@@ -8,14 +8,9 @@ const CardTextDB = (props) => {
       <p className="plant-scientificName">{props.plant.scientificName}</p>
       <p className="plant-sunlight">Sunlight: {props.plant.sunlight}</p>
       <p className="plant-water">Water: {props.plant.water}</p>
-
-      <div className="plantBtnsDiv">
-        <button onClick={(event) => {
-          props.assignNotePlant(props.plant)
-        }} className="note-btn">
-          Notes
-        </button>
-      </div>
+      {props.plant.user !== "" ?
+        <p className="plant-user">Created by: {props.plant.user}</p>
+        : null}
     </>
   )
 }

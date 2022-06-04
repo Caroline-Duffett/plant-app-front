@@ -314,8 +314,8 @@ const handleCreateUser = (event) => {
           <div className='appFormDiv'>
             {toggleLogin ?
               //login form
-              <div className="formContainer">
-                <h1 className='formTitle'>Login</h1>
+              <div className="login-div">
+                <h1 className="plants-text login-fields">Login</h1>
                 <form onSubmit={handleLogin} className='inputForm'>
                   <input type='text' placeholder='username' className='textInput' onChange={(event)=> {setUsername(event.target.value)}}/>
                   <input type='password' placeholder='password' className='textInput' onChange={(event)=> {setPassword(event.target.value)}}/>
@@ -329,8 +329,8 @@ const handleCreateUser = (event) => {
               </div>
             :
             // new user form
-            <div className="App" className='formContainer'>
-              <h1 className='formTitle'>Create an Account</h1>
+            <div className="App" className='login-div'>
+              <h1 className="plants-text login-fields">Create an Account</h1>
               <form onSubmit={handleCreateUser} className='inputForm'>
                 <input type='text' placeholder='username' className='textInput' minLength="4" maxLength="15" unique="true" required onChange={(event)=> {setUsername(event.target.value)}}/>
                 <input type='password' placeholder='password' className='textInput'  minLength="1" maxLength="16" required onChange={(event)=> {setPassword(event.target.value)}}/>
@@ -343,15 +343,19 @@ const handleCreateUser = (event) => {
               </form>
             </div>
             }
-            <button onClick={handleToggleForm} className='accountBtn'>{toggleLogin ? 'Need an account?' : 'Already have an account?'}</button>
+            <div className="acct-btn-div">
+              <button onClick={handleToggleForm} className='account-btn'>{toggleLogin ? 'New Account' : 'Login'}</button>
+            </div>
           </div>
         }
       </div>
       { currentUser.username ?
         <>
-        <button onClick={displayPlantsDB}>Show Your Plants</button>
-        <button onClick={displayPlantsButton}>Show Database</button>
-        <h1>Hello {currentUser.username}</h1>
+          <div className="toggle-btns-div">
+            <button onClick={displayPlantsDB} className="toggle-show-btns">Show Your Plants</button>
+            <button onClick={displayPlantsButton} className="toggle-show-btns">Show Database</button>
+          </div>
+        <h1 className="plants-text">Hello, {currentUser.username}!</h1>
         { showUserPlants ?
           <>
             <NewPlants handleNewPlantFormSubmit={handleNewPlantFormSubmit} handleNewNameChange={handleNewNameChange} handleNewScientificNameChange={handleNewScientificNameChange} handleNewImageChange={handleNewImageChange} handleNewSunLightChange={handleNewSunLightChange} handleNewWaterChange={handleNewWaterChange}/>
