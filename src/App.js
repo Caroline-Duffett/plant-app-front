@@ -100,8 +100,8 @@ const App = () => {
 
   useEffect(()=>{
     axios
-      .get('http://localhost:3000/plants')
-      // .get('https://shrouded-wave-73322.herokuapp.com/plants')
+      //.get('http://localhost:3000/plants')
+      .get('https://shrouded-wave-73322.herokuapp.com/plants')
       .then((response)=>{
         setPlants(response.data)
         setNotes(response.data.notes)
@@ -110,8 +110,8 @@ const App = () => {
 
   const handleDelete = (plantData)=>{
     axios
-    .delete(`http://localhost:3000/plants/${plantData._id}`)
-    // .delete(`https://shrouded-wave-73322.herokuapp.com/plants/${plantData._id}`)
+    //.delete(`http://localhost:3000/plants/${plantData._id}`)
+    .delete(`https://shrouded-wave-73322.herokuapp.com/plants/${plantData._id}`)
       .then(()=>{
         axios
           .get('http://localhost:3000/plants')
@@ -124,8 +124,8 @@ const App = () => {
 
   const handleNoteDelete = (plantData, notesData)=>{
     axios
-    //.delete(`http://localhost:3000/notes/${plantData._id}/${notesData}`)
-    .delete(`https://shrouded-wave-73322.herokuapp.com/notes/${plantData._id}/${notesData}`)
+    .delete(`http://localhost:3000/notes/${plantData._id}/${notesData}`)
+    //.delete(`https://shrouded-wave-73322.herokuapp.com/notes/${plantData._id}/${notesData}`)
       .then(()=>{
         axios
           .get('http://localhost:3000/plants')
@@ -142,8 +142,8 @@ const App = () => {
     event.preventDefault()
     event.currentTarget.reset()
     axios.post(
-     'http://localhost:3000/plants',
-    // 'https://shrouded-wave-73322.herokuapp.com/plants',
+    // 'http://localhost:3000/plants',
+    'https://shrouded-wave-73322.herokuapp.com/plants',
      { //must match model
        name: newName,
        scientificName: newScientificName,
@@ -154,8 +154,8 @@ const App = () => {
      }
     ).then(()=>{
       axios
-        .get('http://localhost:3000/plants')
-        // .get('https://shrouded-wave-73322.herokuapp.com/plants')
+        //.get('http://localhost:3000/plants')
+        .get('https://shrouded-wave-73322.herokuapp.com/plants')
         .then((response)=>{
           setPlants(response.data)
         })
@@ -171,8 +171,8 @@ const App = () => {
     event.preventDefault();
     axios
       .put(
-        `http://localhost:3000/plants/${plantData._id}`,
-        // `https://shrouded-wave-73322.herokuapp.com/plants/${plantData._id}`,
+        //`http://localhost:3000/plants/${plantData._id}`,
+        `https://shrouded-wave-73322.herokuapp.com/plants/${plantData._id}`,
         {
           name: newName,
           scientificName: newScientificName,
@@ -183,8 +183,8 @@ const App = () => {
       )
     .then(()=>{
       axios
-        .get('http://localhost:3000/plants')
-        // .get('https://shrouded-wave-73322.herokuapp.com/plants')
+        //.get('http://localhost:3000/plants')
+        .get('https://shrouded-wave-73322.herokuapp.com/plants')
         .then((response)=>{
           setPlants(response.data)
         })
@@ -201,16 +201,16 @@ const App = () => {
     event.preventDefault();
     axios
       .post(
-        `http://localhost:3000/notes/${noteData._id}`,
-        // `https://shrouded-wave-73322.herokuapp.com/notes/${noteData._id}`,
+        //`http://localhost:3000/notes/${noteData._id}`,
+        `https://shrouded-wave-73322.herokuapp.com/notes/${noteData._id}`,
         {
           note: newNote,
         }
       )
     .then(()=>{
       axios
-        .get('http://localhost:3000/plants')
-        // .get('https://shrouded-wave-73322.herokuapp.com/plants')
+        //.get('http://localhost:3000/plants')
+        .get('https://shrouded-wave-73322.herokuapp.com/plants')
         .then((response)=>{
           setNotes(response.data)
           setPlants(response.data)
@@ -241,7 +241,8 @@ const handleCreateUser = (event) => {
       password: password
     }
     axios
-      .post('http://localhost:3000/createaccount', userObj)
+      //.post('http://localhost:3000/createaccount', userObj)
+      .post('https://shrouded-wave-73322.herokuapp.com/createaccount', userObj)
       .then((response) => {
       if(response.data.username){
         console.log(response);
@@ -270,7 +271,10 @@ const handleCreateUser = (event) => {
     }
     setUsername('')
     setPassword('')
-    axios.put('http://localhost:3000/login', userObj).then((response) => {
+    axios
+      //.put('http://localhost:3000/login', userObj)
+      .put('https://shrouded-wave-73322.herokuapp.com/login', userObj)
+      .then((response) => {
       if(response.data.username){
         console.log(response);
         setToggleError(false)
