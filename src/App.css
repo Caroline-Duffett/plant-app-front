@@ -200,10 +200,12 @@ button:hover, .submit-btns:hover, .submit-btn-new:hover {
   text-align: center;
 }
 .acct-btn-div {
-  margin-top: -100px;
+  /* margin-top: -100px; */
+  text-align: center;
+  margin-top: 20px;
 }
 .account-btn {
-  width: 250px;
+  width: 275px;
   font-size: 20px;
 }
 
