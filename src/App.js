@@ -129,7 +129,7 @@ const App = () => {
     .delete(`https://shrouded-wave-73322.herokuapp.com/notes/${plantData._id}/${notesData}`)
       .then(()=>{
         axios
-          // .get('http://localhost:3000/plants')
+          //.get('http://localhost:3000/plants')
           .get(`https://shrouded-wave-73322.herokuapp.com/plants`)
           .then((response)=>{
             setPlants(response.data)
