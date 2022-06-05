@@ -320,7 +320,6 @@ const handleCreateUser = (event) => {
           <button onClick={handleLogout} className='logoutBtn'>Logout</button> :
           <div className='appFormDiv'>
             {toggleLogin ?
-              //login form
               <div className="login-div">
                 <h1 className="plants-text login-fields">Login</h1>
                 <form onSubmit={handleLogin} className='inputForm'>
@@ -335,8 +334,7 @@ const handleCreateUser = (event) => {
                 </form>
               </div>
             :
-            // new user form
-            <div className="App" className='login-div'>
+            <div className="login-div">
               <h1 className="plants-text login-fields">Create an Account</h1>
               <form onSubmit={handleCreateUser} className='inputForm'>
                 <input type='text' placeholder='username' className='textInput' minLength="4" maxLength="15" unique="true" required onChange={(event)=> {setUsername(event.target.value)}}/>
