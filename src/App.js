@@ -163,7 +163,7 @@ const App = () => {
     })
     setNewName()
     setNewScientificName()
-    setNewImage('')
+    setNewImage()
     setNewSunLight()
     setNewWater()
   }
