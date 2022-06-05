@@ -129,7 +129,7 @@ const App = () => {
     .delete(`https://shrouded-wave-73322.herokuapp.com/notes/${plantData._id}/${notesData}`)
       .then(()=>{
         axios
-          // .get('http://localhost:3000/plants')
+          //.get('http://localhost:3000/plants')
           .get(`https://shrouded-wave-73322.herokuapp.com/plants`)
           .then((response)=>{
             setPlants(response.data)
@@ -334,7 +334,7 @@ const handleCreateUser = (event) => {
                 </form>
               </div>
             :
-            <div className="App" className='login-div'>
+            <div className="login-div">
               <h1 className="plants-text login-fields">Create an Account</h1>
               <form onSubmit={handleCreateUser} className='inputForm'>
                 <input type='text' placeholder='username' className='textInput' minLength="4" maxLength="15" unique="true" required onChange={(event)=> {setUsername(event.target.value)}}/>
