@@ -1,70 +1,43 @@
-# Getting Started with Create React App
+# This is an online plant app for a class project by Caroline Duffett and Tim Minker
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Explanation of the technologies used:
+This is a full stack MERN app with full CRUD capabilities. For the development of this app, we used Mongoose, Express, React, Node.js, Axios, Express-session, Bcrypt, Cors, and JSX with HTML. This app has a frontend and a backend, each with their own GitHub repositories. Both ends are also deployed on their own Heroku apps. The data for this app is being stored on MongoDB.
 
-## Available Scripts
+# Approach taken:
+We used our previous assignments and notes to help us build this app. The purpose of this app is for users to be able to have access to a database of plants… Users must create an account and login…Can create, delete, and edit their plants. There is also a related notes model for each user’s plant. They can create and delete notes…
 
-In the project directory, you can run:
+# User Stories:
+- Users can create an account with username and password, and on subsequent logins can view the stored data they have created.
+- Users are able to make notes on their created plant objects, and can delete notes as well. No other users can see these notes or edit them.
+- Users can create plants that will be added with information such as name, scientific name, a linked photo, and watering and sunlight requirements.
+- Users can edit any plant objects they have created (which will show in the global db), and can delete them as well should they choose.
 
-### `npm start`
+# Links to live sites:
+# Frontend:
+https://obscure-ravine-92463.herokuapp.com/
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+# Backend:
+https://shrouded-wave-73322.herokuapp.com/
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+# Links to Git repositories:
+# Frontend:
+https://github.com/StudentCD/frontend3
 
-### `npm test`
+# Backend:
+https://github.com/timeminker/project3-backend
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# Installation Instructions:
+To access the app, the user should only need to create an account and login.
 
-### `npm run build`
+# Unsolved problems/things to fix or upgrade:
+ - As it sits now, users can only create new plants for their own personal plants libraries. We would like to build functionality so that users could pull plants from global db and add to their own.
+ - Displaying of logged in users plants is done on the front end through a turnery, we would like to make this possible through the get-route on the backend, but were unable to capture logged-in user's username to sort.
+ - Search function currently only works for plant name, would like to add function to search all displayed fields.
+ - Some small issues with styling when viewing app on an actual mobile phone.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# Sources:
+These class markdowns helped us:
+https://git.generalassemb.ly/Software-Engineering-Immersive-Remote/SEIR-Belcher/tree/master/projects/project_3/unit-3-auth-multiple-components
+https://git.generalassemb.ly/Software-Engineering-Immersive-Remote/SEIR-Belcher/tree/master/projects/project_3/unit-3-auth-single-component
+https://git.generalassemb.ly/Software-Engineering-Immersive-Remote/SEIR-Belcher/tree/master/projects/project_2/Session_and_Auth
+Classmates helped us as well.
